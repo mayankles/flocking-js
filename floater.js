@@ -4,7 +4,7 @@ class Floater {
       this.velocity = createVector(random(-2, 2), random(-2, 2));
       this.clingyness = clingyness;
       this.leadership = this.assignLeadership(distribution);
-      this.learn = this.leadership * random(0.001, 0.005);  // scaled evolution
+      this.learn = this.leadership * random(0.0001, 0.0005);  // scaled evolution
       this.followers = 0;
       this.leader = null;
       this.topspeed = 3;
@@ -44,7 +44,7 @@ class Floater {
     }
   
     checkEdges() {
-      let edge = width * 1.2;
+      let edge = width / 50;
       let velChange = this.topspeed / 50;
       if (this.location.x < edge) this.velocity.x += velChange;
       if (this.location.x > width - edge) this.velocity.x -= velChange;

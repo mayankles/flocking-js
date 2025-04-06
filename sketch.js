@@ -1,15 +1,15 @@
 // Updated sketch.js with leadership distribution and learnability managed in Floater class
 let colorModeSelector;
 let distributionSelector;
-let colorMode = 'velocity';
-let leadershipDistribution = 'uniform';
+let colorMode = 'leadership';
+let leadershipDistribution = 'normal';
 let floaters = [];
-let numEl = 500;
-let floaterSize = 6;
-let clingyness = 0.1;
+let numEl = 1000;
+let floaterSize = 8;
+let clingyness = 0.05;
 let showMouseInfluence = true;
 
-let numElSlider, sizeSlider, clingySlider, mouseCheckbox, resetButton;
+let numElSlider, sizeSlider, clingySlider, leaderTrialSlider, mouseCheckbox, resetButton;
 let controlPanel, isDragging = false, dragOffset;
 
 function setup() {
@@ -40,6 +40,7 @@ function setup() {
   colorModeSelector.option('velocity');
   colorModeSelector.option('leadership');
   colorModeSelector.changed(() => colorMode = colorModeSelector.value());
+  colorModeSelector.selected(colorMode);
   controlPanel.child(colorModeSelector);
 
   controlPanel.child(createDiv('Leadership Distribution'));
@@ -48,6 +49,7 @@ function setup() {
   distributionSelector.option('logarithmic');
   distributionSelector.option('normal');
   distributionSelector.changed(() => leadershipDistribution = distributionSelector.value());
+  distributionSelector.selected(leadershipDistribution);
   controlPanel.child(distributionSelector);
 
   controlPanel.child(createDiv('Number of Floaters'));
@@ -61,6 +63,14 @@ function setup() {
   controlPanel.child(createDiv('Clingyness'));
   clingySlider = createSlider(0.01, 0.5, clingyness, 0.01);
   controlPanel.child(clingySlider);
+
+  controlPanel.child(createDiv('Leader Trial Fraction'));
+  leaderTrialSlider = createSlider(0.01, 0.5, 0.5, 0.01);
+  controlPanel.child(leaderTrialSlider);
+
+  controlPanel.child(createDiv('Learn ability'));
+  learnAbilitySlider = createSlider(0, 0.005, 0.001, 0.0001);
+  controlPanel.child(learnAbilitySlider);
 
   mouseCheckbox = createCheckbox('Mouse Influence', showMouseInfluence);
   mouseCheckbox.changed(() => showMouseInfluence = mouseCheckbox.checked());
@@ -86,7 +96,9 @@ function draw() {
 
     let trials = 0;
     let newLeader = i;
-    while (trials < 0.1 * numEl) {
+    let trialFraction = leaderTrialSlider.value();
+    let learnAbility = learnAbilitySlider.value();
+    while (trials < trialFraction * numEl) {
       let j = int(random(numEl));
       if (i === j) continue;
       trials++;
@@ -106,9 +118,10 @@ function draw() {
     }
     let dir = p5.Vector.sub(floater.location, target);
     dir.normalize();
-    dir.mult(floater.clingyness);
+    dir.mult(clingySlider.value());
     floater.velocity.sub(dir);
 
+    floater.learn = learnAbility;
     floater.update();
     floater.checkEdges();
     floater.display(floaterSize);
