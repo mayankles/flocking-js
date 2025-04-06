@@ -9,7 +9,7 @@ let floaterSize = 8;
 let clingyness = 0.05;
 let showMouseInfluence = true;
 
-let numElSlider, sizeSlider, clingySlider, leaderTrialSlider, mouseCheckbox, resetButton;
+let numElSlider, sizeSlider, clingySlider, leaderTrialSlider, learnAbilitySlider, allegianceCheckbox, mouseCheckbox, resetButton;
 let controlPanel, isDragging = false, dragOffset;
 
 function setup() {
@@ -72,6 +72,9 @@ function setup() {
   learnAbilitySlider = createSlider(0, 0.005, 0.001, 0.0001);
   controlPanel.child(learnAbilitySlider);
 
+  allegianceCheckbox = createCheckbox('Use Allegiance', false);
+  controlPanel.child(allegianceCheckbox);
+
   mouseCheckbox = createCheckbox('Mouse Influence', showMouseInfluence);
   mouseCheckbox.changed(() => showMouseInfluence = mouseCheckbox.checked());
   controlPanel.child(mouseCheckbox);
@@ -97,12 +100,12 @@ function draw() {
     let trials = 0;
     let newLeader = i;
     let trialFraction = leaderTrialSlider.value();
-    let learnAbility = learnAbilitySlider.value();
     while (trials < trialFraction * numEl) {
       let j = int(random(numEl));
       if (i === j) continue;
       trials++;
-      if (floaters[j].leadership > floater.leadership) {
+      let comparisonLeadership = allegianceCheckbox.checked() ? floaters[floater.leader].leadership : floater.leadership;
+      if (floaters[j].leadership > comparisonLeadership) {
         newLeader = j;
         break;
       }
@@ -121,7 +124,7 @@ function draw() {
     dir.mult(clingySlider.value());
     floater.velocity.sub(dir);
 
-    floater.learn = learnAbility;
+    floater.learn = learnAbilitySlider.value();
     floater.update();
     floater.checkEdges();
     floater.display(floaterSize);
