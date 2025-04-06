@@ -1,4 +1,4 @@
-[View simulation](https://mayankles.github.io/flocking-js/)
+[Live demo](https://mayankles.github.io/flocking-js/)
 
 # Flocking Simulation
 
@@ -57,6 +57,6 @@ It’s a fun way to learn how small local rules can produce global patterns — 
 
 ## Try It Out
 
-Open `index.html` in a browser and start playing.  A [live devmo](https://mayankles.github.io/flocking-js/) can be viewed here.
+Open `index.html` in a browser and start playing.  A [live demo](https://mayankles.github.io/flocking-js/) can be viewed on the Github Page site.
 
 No setup needed — everything runs with [p5.js](https://p5js.org/) in your browser.
