@@ -7,12 +7,12 @@ let floaters = [];
 let numEl = 1000;
 let floaterSize = 8;
 let clingyness = 0.05;
-let leaderTrial = 0;
+let awareness = 0;
 let learnAbility = 0;
 let allegiance = false;
 let showMouseInfluence = false;
 
-let numElSlider, sizeSlider, clingySlider, leaderTrialSlider, learnAbilitySlider, allegianceCheckbox, mouseCheckbox, resetButton;
+let numElSlider, sizeSlider, clingySlider, awarenessSlider, learnAbilitySlider, allegianceCheckbox, mouseCheckbox, resetButton;
 let controlPanel, isDragging = false, dragOffset;
 
 function setup() {
@@ -118,12 +118,12 @@ function setup() {
   let trialHelp = createSpan(' ℹ️');
   trialHelp.attribute('title', 'The fraction of the total population that each Floater samples when choosing a new leader.');
   trialHelp.style('cursor', 'help');
-  trialLabel.html('Leader Trial Fraction: ' + leaderTrial);
+  trialLabel.html('Awareness: ' + awareness);
   trialLabel.child(trialHelp);
   controlPanel.child(trialLabel);
-  leaderTrialSlider = createSlider(0.00, 1.0, 0.5, 0.01);
-  leaderTrialSlider.input(() => trialLabel.html('Leader Trial Fraction: ' + leaderTrialSlider.value().toFixed(2)).append(trialHelp));
-  controlPanel.child(leaderTrialSlider);
+  awarenessSlider = createSlider(0.00, 1.0, 0.5, 0.01);
+  awarenessSlider.input(() => trialLabel.html('Awareness: ' + awarenessSlider.value().toFixed(2)).append(trialHelp));
+  controlPanel.child(awarenessSlider);
 
   let learnLabel = createDiv();
   let learnHelp = createSpan(' ℹ️');
@@ -216,7 +216,7 @@ recordPanel.child(captureButton);
   numElSlider.value(numEl);
   sizeSlider.value(floaterSize);
   clingySlider.value(clingyness);
-  leaderTrialSlider.value(leaderTrial);
+  awarenessSlider.value(awareness);
   learnAbilitySlider.value(learnAbility);
   allegianceCheckbox.checked(allegiance);
   mouseCheckbox.checked(showMouseInfluence);
@@ -241,7 +241,7 @@ function draw() {
 
     let trials = 0;
     let newLeader = i;
-    let trialFraction = leaderTrialSlider.value();
+    let trialFraction = awarenessSlider.value();
     while (trials < trialFraction * numEl) {
       let j = int(random(numEl));
       if (i === j) continue;
