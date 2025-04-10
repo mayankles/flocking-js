@@ -102,13 +102,13 @@ function initializeFloaters() {
 
 // Narrative logic
 let narrativeStages = [
-  { text: "📖 Introduction 📖  Meet the floaters.  Each floater is imbued with some Leadership (denoted by color). Two key forces shape the floaters group: 'Awareness' (how many others each floater sees) and Learn Ability (how quickly each floater's leadership changes over time).", settings: {awareness: 0, learnAbility: 0, clingyness: 0.08} },
-  { text: "🌑 Age of Wanderers 🌑 Each floater drifts alone, aimlessly.", settings: {awareness: 0, learnAbility: 0, clingyness: 0.08} },
-  { text: "👁️ First Contact 👁️ Awareness awakens, and pulls many floaters together.", settings: {awareness: 0.01, learnAbility: 0, clingyness: 0.08} },
-  { text: "🌠 Rising Ambition 🌠 Awareness deepens; clusters stretch into a ribbon, following their flocking rules into a chase.", settings: {awareness: 0.05, learnAbility: 0, clingyness: 0.08} },
-  { text: "☄️ Streamlined Society ☄️ High awareness forms a tight ribbon, unified in a pursuit of the mother flocker, separated by their static, instrinsic values.", settings: {awareness: 0.5, learnAbility: 0, clingyness: 0.08} },
-  { text: "🌌 Awakening 🌌 Introducing learn ability disrupts the tightness, and creates an adaptive cluster, with floaters that attract each other endlessly.", settings: {awareness: 0.5, learnAbility: 0.001, clingyness: 0.08} },
-  { text: "🌟 Dynamic Equilibrium 🌟 At higher learn abilities, the cycling of leadership values collapse into a tight ball.", settings: {awareness: 0.5, learnAbility: 0.01, clingyness: 0.08} }
+  { text: "⏐ Introduction ⏐ Meet the floaters.  Each floater is imbued with some Leadership (denoted by color). Two key forces shape the floaters group: 'Awareness' (how many others each floater sees) and Learn Ability (how quickly each floater's leadership changes over time).", settings: {awareness: 0, learnAbility: 0, clingyness: 0.08} },
+  { text: "⏐ Age of Wanderers ⏐ Each floater drifts alone, aimlessly.", settings: {awareness: 0, learnAbility: 0, clingyness: 0.08} },
+  { text: "⏐ First Contact ⏐ Awareness awakens, and begins to pull the floaters together.", settings: {awareness: 0.01, learnAbility: 0, clingyness: 0.08} },
+  { text: "⏐ Rising Ambition ⏐ Awareness deepens, clusters stretch into a ribbon, following their flocking rules into a chase.", settings: {awareness: 0.05, learnAbility: 0, clingyness: 0.08} },
+  { text: "⏐ Streamlined Society ⏐ High awareness forms a tight ribbon, unified in a pursuit of the mother flocker, separated by their static, instrinsic values.", settings: {awareness: 0.5, learnAbility: 0, clingyness: 0.08} },
+  { text: "⏐ Awakening ⏐ Introducing learn ability disrupts the tightness, and creates an adaptive cluster, with floaters that attract each other endlessly.", settings: {awareness: 0.5, learnAbility: 0.001, clingyness: 0.08} },
+  { text: "⏐ Dynamic Equilibrium ⏐ At higher learn abilities, the cycling of leadership values collapse into a tight ball.", settings: {awareness: 0.5, learnAbility: 0.01, clingyness: 0.08} }
 ];
 
 
