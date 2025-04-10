@@ -10,6 +10,10 @@ It’s like watching a murmuration of birds — but powered by sliders and JavaS
 
 ---
 
+![Floaters Demo](./media/floaters.2.gif)
+
+---
+
 ## How It Works
 
 Every Floater:
@@ -62,6 +66,8 @@ It’s a fun way to learn how small local rules can produce global patterns — 
 Open `index.html` in a browser and start playing.  A [live demo](https://mayankles.github.io/flocking-js/) can be viewed on the Github Page site.
 
 No setup needed — everything runs with [p5.js](https://p5js.org/) in your browser.
+
+---
 
 # Attributions
 This project was resurrected from a [Processing sketch](https://openprocessing.org/sketch/462747) I wrote circa 2014ish, thanks to some mix of ChatGPT 4o, 4.5, o1, and o3-mini.
