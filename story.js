@@ -7,6 +7,7 @@ let floaterSize = 20;
 let clingySlider, awarenessSlider, learnAbilitySlider;
 
 let currentStage = 0;
+let typewriterTimer = null;
 
 function setupNarrative() {
   const narrativeText = document.getElementById("narrative-text");
@@ -19,14 +20,15 @@ function setupNarrative() {
     narrativeText.innerHTML = "";
     let i = 0;
     const speed = 30;
-    function typeWriter() {
+    clearInterval(typewriterTimer);
+    typewriterTimer = setInterval(() => {
       if (i < stage.text.length) {
         narrativeText.innerHTML += stage.text.charAt(i);
         i++;
-        setTimeout(typeWriter, speed);
+      } else {
+        clearInterval(typewriterTimer);
       }
-    }
-    typeWriter();
+    }, speed);
 
     awarenessSlider.value(stage.settings.awareness);
     learnAbilitySlider.value(stage.settings.learnAbility);
@@ -37,6 +39,7 @@ function setupNarrative() {
   }
 
   nextBtn.addEventListener('click', () => {
+    clearInterval(typewriterTimer);
     currentStage = (currentStage + 1) % narrativeStages.length;
     loadStage(currentStage);
   });

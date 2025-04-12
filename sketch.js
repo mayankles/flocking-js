@@ -89,7 +89,11 @@ function setup() {
   numElLabel.child(numElHelp);
   controlPanel.child(numElLabel);
   numElSlider = createSlider(10, 10000, numEl, 100);
-  numElSlider.input(() => numElLabel.html('Number of Floaters: ' + numElSlider.value()).append(numElHelp));
+  numElSlider.input(() => {
+    help.parentElement.querySelector('span').remove();
+    label.html(label.innerHTML.split(':')[0] + ': ' + slider.value().toFixed(slider.step.toString().includes('.') ? 2 : 0));
+    label.child(help);
+  });
   controlPanel.child(numElSlider);
 
   let sizeLabel = createDiv();
@@ -100,7 +104,10 @@ function setup() {
   sizeLabel.child(sizeHelp);
   controlPanel.child(sizeLabel);
   sizeSlider = createSlider(2, 20, floaterSize);
-  sizeSlider.input(() => sizeLabel.html('Floater Size: ' + sizeSlider.value()).append(sizeHelp));
+  sizeSlider.input(() => {
+    sizeLabel.html('Floater Size: ' + sizeSlider.value());
+    sizeLabel.child(sizeHelp);
+  });
   controlPanel.child(sizeSlider);
 
   let clingyLabel = createDiv();
@@ -111,7 +118,10 @@ function setup() {
   clingyLabel.child(clingyHelp);
   controlPanel.child(clingyLabel);
   clingySlider = createSlider(0.01, 0.5, clingyness, 0.01);
-  clingySlider.input(() => clingyLabel.html('Clingyness: ' + clingySlider.value().toFixed(2)).append(clingyHelp));
+  clingySlider.input(() => {
+    clingyLabel.html('Clingyness: ' + clingySlider.value().toFixed(2));
+    clingyLabel.child(clingyHelp);
+  });
   controlPanel.child(clingySlider);
 
   let trialLabel = createDiv();
@@ -122,7 +132,10 @@ function setup() {
   trialLabel.child(trialHelp);
   controlPanel.child(trialLabel);
   awarenessSlider = createSlider(0.00, 1.0, 0.5, 0.01);
-  awarenessSlider.input(() => trialLabel.html('Awareness: ' + awarenessSlider.value().toFixed(2)).append(trialHelp));
+  awarenessSlider.input(() => {
+    trialLabel.html('Awareness: ' + awarenessSlider.value().toFixed(2));
+    trialLabel.child(trialHelp);
+  });
   controlPanel.child(awarenessSlider);
 
   let learnLabel = createDiv();
@@ -133,7 +146,10 @@ function setup() {
   learnLabel.child(learnHelp);
   controlPanel.child(learnLabel);
   learnAbilitySlider = createSlider(0, 0.005, 0.001, 0.0001);
-  learnAbilitySlider.input(() => learnLabel.html('Learn Ability: ' + learnAbilitySlider.value().toFixed(4)).append(learnHelp));
+  learnAbilitySlider.input(() => {
+    learnLabel.html('Learn Ability: ' + learnAbilitySlider.value().toFixed(4));
+    learnLabel.child(learnHelp);
+  });
   controlPanel.child(learnAbilitySlider);
 
   let allegianceRow = createDiv();
